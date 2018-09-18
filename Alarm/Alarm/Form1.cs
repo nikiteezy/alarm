@@ -12,9 +12,11 @@ using System.Windows.Forms;
 namespace Alarm
 {
     public partial class MainForm : Form
-    {
+    {   
         public Int32[] NumDaysOfWeek = new Int32[7];
         public Int32 NumToday;
+        public Int32 AlarmHour, AlarmMin;
+        public bool AlarmIsOn = false;
 
         public MainForm()
         {
@@ -82,11 +84,34 @@ namespace Alarm
         private void btnSet_Click(object sender, EventArgs e)
         {
             var nowTime = DateTime.Now;
-           // nowTime.DayOfWeek 
+
+            double hour, min;
+
+            //if the alarm is set to the current day
+            for (int i = 0; i < 7; i++)
+            {
+                if (NumDaysOfWeek[i] == 1)
+                {
+                    //alarm should ring today or not?
+                    if (i == NumToday)
+                    {
+                        if (nowTime.Hour < Convert.ToInt32(txbH.Text))
+                        {
+                            AlarmHour = Convert.ToInt32(txbH.Text);
+                            AlarmMin = Convert.ToInt32(txbM.Text);
+                        }
+                    }
+                }
+            }
 
             var futureTime = nowTime.AddHours(Convert.ToDouble(txbH.Text));
             futureTime = futureTime.AddMinutes(Convert.ToDouble(txbM.Text));
             MessageBox.Show(futureTime.ToString("HH:mm"));
+        }
+
+        private void cBTimerOn_CheckedChanged(object sender, EventArgs e)
+        {
+            AlarmIsOn = cBTimerOn.Checked;
         }
 
         #region Player
@@ -202,6 +227,8 @@ namespace Alarm
         {
             SetDayOfWeek(lblSetSat);
         }
+
+        
 
         private void lblSetSun_Click(object sender, EventArgs e)
         {

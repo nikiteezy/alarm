@@ -50,6 +50,7 @@
             this.lblSetTue = new System.Windows.Forms.Label();
             this.lblSetMon = new System.Windows.Forms.Label();
             this.lblSetSun = new System.Windows.Forms.Label();
+            this.cBTimerOn = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnStart
@@ -172,7 +173,6 @@
             this.lbl_sat.Size = new System.Drawing.Size(21, 13);
             this.lbl_sat.TabIndex = 14;
             this.lbl_sat.Text = "sat";
-
             // 
             // lblSetSat
             // 
@@ -244,11 +244,23 @@
             this.lblSetSun.Text = "sun";
             this.lblSetSun.Click += new System.EventHandler(this.lblSetSun_Click);
             // 
+            // cBTimerOn
+            // 
+            this.cBTimerOn.AutoSize = true;
+            this.cBTimerOn.Location = new System.Drawing.Point(528, 94);
+            this.cBTimerOn.Name = "cBTimerOn";
+            this.cBTimerOn.Size = new System.Drawing.Size(130, 17);
+            this.cBTimerOn.TabIndex = 22;
+            this.cBTimerOn.Text = "включить будильник";
+            this.cBTimerOn.UseVisualStyleBackColor = true;
+            this.cBTimerOn.CheckedChanged += new System.EventHandler(this.cBTimerOn_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cBTimerOn);
             this.Controls.Add(this.lblSetSat);
             this.Controls.Add(this.lblSetThu);
             this.Controls.Add(this.lblSetFri);
@@ -299,6 +311,7 @@
         private System.Windows.Forms.Label lblSetTue;
         private System.Windows.Forms.Label lblSetMon;
         private System.Windows.Forms.Label lblSetSun;
+        private System.Windows.Forms.CheckBox cBTimerOn;
     }
 }
 
