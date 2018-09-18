@@ -16,7 +16,7 @@ namespace Alarm
         public Int32[] NumDaysOfWeek = new Int32[7];
         public Int32 NumToday;
         public Int32 AlarmHour, AlarmMin;
-        public bool AlarmIsOn = false;
+
 
         public MainForm()
         {
@@ -35,6 +35,16 @@ namespace Alarm
 
             if(now.Hour == 0)
                 SetToday();
+        }
+
+        private void AlarmTimer_Tick(object sender, EventArgs e)
+        {
+            DateTime now = DateTime.Now;
+            if (now.Hour == AlarmHour && now.Minute == AlarmMin)
+            {
+                Player(true);
+                AlarmTimer.Enabled = false;
+            }
         }
 
         void SetToday()
@@ -83,36 +93,21 @@ namespace Alarm
 
         private void btnSet_Click(object sender, EventArgs e)
         {
-            var nowTime = DateTime.Now;
-
-            double hour, min;
-
-            //if the alarm is set to the current day
-            for (int i = 0; i < 7; i++)
+            if (btnSet.Text == "break")
             {
-                if (NumDaysOfWeek[i] == 1)
-                {
-                    //alarm should ring today or not?
-                    if (i == NumToday)
-                    {
-                        if (nowTime.Hour < Convert.ToInt32(txbH.Text))
-                        {
-                            AlarmHour = Convert.ToInt32(txbH.Text);
-                            AlarmMin = Convert.ToInt32(txbM.Text);
-                        }
-                    }
-                }
+                btnSet.Text = "Set";
+                AlarmTimer.Enabled = false;
             }
-
-            var futureTime = nowTime.AddHours(Convert.ToDouble(txbH.Text));
-            futureTime = futureTime.AddMinutes(Convert.ToDouble(txbM.Text));
-            MessageBox.Show(futureTime.ToString("HH:mm"));
+            else
+            {
+                AlarmTimer.Enabled = true;
+                AlarmHour = Convert.ToInt32(txbH.Text);
+                AlarmMin = Convert.ToInt32(txbM.Text);
+                btnSet.Text = "break";
+            }
         }
 
-        private void cBTimerOn_CheckedChanged(object sender, EventArgs e)
-        {
-            AlarmIsOn = cBTimerOn.Checked;
-        }
+    
 
         #region Player
 
@@ -130,113 +125,15 @@ namespace Alarm
             Player(true);
         }
 
+        
+
         private void btnStop_Click(object sender, EventArgs e)
         {
             Player(false);
         }
         #endregion
 
-        #region SetDayOfWeek
-
-        void SetDayOfWeek(Label lb)
-        {
-            if (lb.BackColor != Color.Aqua)
-            {
-                lb.BackColor = Color.Aqua;
-                switch (lb.Name)
-                {
-                    case "lblSetMon":
-                        NumDaysOfWeek[1] = 1;
-                        break;
-                    case "lblSetTue":
-                        NumDaysOfWeek[2] = 1;
-                        break;
-                    case "lblSetWed":
-                        NumDaysOfWeek[3] = 1;
-                        break;
-                    case "lblSetThu":
-                        NumDaysOfWeek[4] = 1;
-                        break;
-                    case "lblSetFri":
-                        NumDaysOfWeek[5] = 1;
-                        break;
-                    case "lblSetSat":
-                        NumDaysOfWeek[6] = 1;
-                        break;
-                    case "lblSetSun":
-                        NumDaysOfWeek[0] = 1;
-                        break;
-                }
-            }
-            else
-            {
-                lb.BackColor = Color.White;
-                switch (lb.Name)
-                {
-                    case "lblSetMon":
-                        NumDaysOfWeek[1] = 0;
-                        break;
-                    case "lblSetTue":
-                        NumDaysOfWeek[2] = 0;
-                        break;
-                    case "lblSetWed":
-                        NumDaysOfWeek[3] = 0;
-                        break;
-                    case "lblSetThu":
-                        NumDaysOfWeek[4] = 0;
-                        break;
-                    case "lblSetFri":
-                        NumDaysOfWeek[5] = 0;
-                        break;
-                    case "lblSetSat":
-                        NumDaysOfWeek[6] = 0;
-                        break;
-                    case "lblSetSun":
-                        NumDaysOfWeek[0] = 0;
-                        break;
-                }
-            }
-        }
-
-        private void lblSetMon_Click(object sender, EventArgs e)
-        {
-            SetDayOfWeek(lblSetMon);
-        }
-
-        private void lblSetTue_Click(object sender, EventArgs e)
-        {
-            SetDayOfWeek(lblSetTue);
-        }
-
-        private void lblSetWed_Click(object sender, EventArgs e)
-        {
-            SetDayOfWeek(lblSetWed);
-        }
-
-        private void lblSetThu_Click(object sender, EventArgs e)
-        {
-            SetDayOfWeek(lblSetThu);
-        }
-
-        private void lblSetFri_Click(object sender, EventArgs e)
-        {
-            SetDayOfWeek(lblSetFri);
-        }
-
-        private void lblSetSat_Click(object sender, EventArgs e)
-        {
-            SetDayOfWeek(lblSetSat);
-        }
-
         
-
-        private void lblSetSun_Click(object sender, EventArgs e)
-        {
-            SetDayOfWeek(lblSetSun);
-        }
-
-
-        #endregion
 
 
     }

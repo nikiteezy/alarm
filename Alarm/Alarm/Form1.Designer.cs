@@ -43,14 +43,7 @@
             this.lbl_fri = new System.Windows.Forms.Label();
             this.lbl_thu = new System.Windows.Forms.Label();
             this.lbl_sat = new System.Windows.Forms.Label();
-            this.lblSetSat = new System.Windows.Forms.Label();
-            this.lblSetThu = new System.Windows.Forms.Label();
-            this.lblSetFri = new System.Windows.Forms.Label();
-            this.lblSetWed = new System.Windows.Forms.Label();
-            this.lblSetTue = new System.Windows.Forms.Label();
-            this.lblSetMon = new System.Windows.Forms.Label();
-            this.lblSetSun = new System.Windows.Forms.Label();
-            this.cBTimerOn = new System.Windows.Forms.CheckBox();
+            this.AlarmTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnStart
@@ -174,100 +167,15 @@
             this.lbl_sat.TabIndex = 14;
             this.lbl_sat.Text = "sat";
             // 
-            // lblSetSat
+            // AlarmTimer
             // 
-            this.lblSetSat.AutoSize = true;
-            this.lblSetSat.Location = new System.Drawing.Point(637, 128);
-            this.lblSetSat.Name = "lblSetSat";
-            this.lblSetSat.Size = new System.Drawing.Size(21, 13);
-            this.lblSetSat.TabIndex = 21;
-            this.lblSetSat.Text = "sat";
-            this.lblSetSat.Click += new System.EventHandler(this.lblSetSat_Click);
-            // 
-            // lblSetThu
-            // 
-            this.lblSetThu.AutoSize = true;
-            this.lblSetThu.Location = new System.Drawing.Point(588, 128);
-            this.lblSetThu.Name = "lblSetThu";
-            this.lblSetThu.Size = new System.Drawing.Size(22, 13);
-            this.lblSetThu.TabIndex = 20;
-            this.lblSetThu.Text = "thu";
-            this.lblSetThu.Click += new System.EventHandler(this.lblSetThu_Click);
-            // 
-            // lblSetFri
-            // 
-            this.lblSetFri.AutoSize = true;
-            this.lblSetFri.Location = new System.Drawing.Point(616, 128);
-            this.lblSetFri.Name = "lblSetFri";
-            this.lblSetFri.Size = new System.Drawing.Size(15, 13);
-            this.lblSetFri.TabIndex = 19;
-            this.lblSetFri.Text = "fri";
-            this.lblSetFri.Click += new System.EventHandler(this.lblSetFri_Click);
-            // 
-            // lblSetWed
-            // 
-            this.lblSetWed.AutoSize = true;
-            this.lblSetWed.Location = new System.Drawing.Point(554, 128);
-            this.lblSetWed.Name = "lblSetWed";
-            this.lblSetWed.Size = new System.Drawing.Size(27, 13);
-            this.lblSetWed.TabIndex = 18;
-            this.lblSetWed.Text = "wed";
-            this.lblSetWed.Click += new System.EventHandler(this.lblSetWed_Click);
-            // 
-            // lblSetTue
-            // 
-            this.lblSetTue.AutoSize = true;
-            this.lblSetTue.Location = new System.Drawing.Point(526, 128);
-            this.lblSetTue.Name = "lblSetTue";
-            this.lblSetTue.Size = new System.Drawing.Size(22, 13);
-            this.lblSetTue.TabIndex = 17;
-            this.lblSetTue.Text = "tue";
-            this.lblSetTue.Click += new System.EventHandler(this.lblSetTue_Click);
-            // 
-            // lblSetMon
-            // 
-            this.lblSetMon.AutoSize = true;
-            this.lblSetMon.Location = new System.Drawing.Point(493, 128);
-            this.lblSetMon.Name = "lblSetMon";
-            this.lblSetMon.Size = new System.Drawing.Size(27, 13);
-            this.lblSetMon.TabIndex = 16;
-            this.lblSetMon.Text = "mon";
-            this.lblSetMon.Click += new System.EventHandler(this.lblSetMon_Click);
-            // 
-            // lblSetSun
-            // 
-            this.lblSetSun.AutoSize = true;
-            this.lblSetSun.Location = new System.Drawing.Point(664, 128);
-            this.lblSetSun.Name = "lblSetSun";
-            this.lblSetSun.Size = new System.Drawing.Size(24, 13);
-            this.lblSetSun.TabIndex = 15;
-            this.lblSetSun.Text = "sun";
-            this.lblSetSun.Click += new System.EventHandler(this.lblSetSun_Click);
-            // 
-            // cBTimerOn
-            // 
-            this.cBTimerOn.AutoSize = true;
-            this.cBTimerOn.Location = new System.Drawing.Point(528, 94);
-            this.cBTimerOn.Name = "cBTimerOn";
-            this.cBTimerOn.Size = new System.Drawing.Size(130, 17);
-            this.cBTimerOn.TabIndex = 22;
-            this.cBTimerOn.Text = "включить будильник";
-            this.cBTimerOn.UseVisualStyleBackColor = true;
-            this.cBTimerOn.CheckedChanged += new System.EventHandler(this.cBTimerOn_CheckedChanged);
+            this.AlarmTimer.Tick += new System.EventHandler(this.AlarmTimer_Tick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cBTimerOn);
-            this.Controls.Add(this.lblSetSat);
-            this.Controls.Add(this.lblSetThu);
-            this.Controls.Add(this.lblSetFri);
-            this.Controls.Add(this.lblSetWed);
-            this.Controls.Add(this.lblSetTue);
-            this.Controls.Add(this.lblSetMon);
-            this.Controls.Add(this.lblSetSun);
             this.Controls.Add(this.lbl_sat);
             this.Controls.Add(this.lbl_thu);
             this.Controls.Add(this.lbl_fri);
@@ -304,14 +212,7 @@
         private System.Windows.Forms.Label lbl_fri;
         private System.Windows.Forms.Label lbl_thu;
         private System.Windows.Forms.Label lbl_sat;
-        private System.Windows.Forms.Label lblSetSat;
-        private System.Windows.Forms.Label lblSetThu;
-        private System.Windows.Forms.Label lblSetFri;
-        private System.Windows.Forms.Label lblSetWed;
-        private System.Windows.Forms.Label lblSetTue;
-        private System.Windows.Forms.Label lblSetMon;
-        private System.Windows.Forms.Label lblSetSun;
-        private System.Windows.Forms.CheckBox cBTimerOn;
+        private System.Windows.Forms.Timer AlarmTimer;
     }
 }
 
